@@ -3,3 +3,5 @@ __pycache__/linear_regression.cpython-37.pyc
 linear_regression.pyc
 utils.pyc
 .vscode/settings.json
+images/
+haarcascades/__pycache__/__init__.cpython-37.pyc
