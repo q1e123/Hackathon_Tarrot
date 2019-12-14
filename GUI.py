@@ -8,7 +8,10 @@ def Space():
 
 def output():
     input = entry.get()
-    temp, umid, vant = weather.predict(input)
+    tempr, umid, vant = weather.predict(input)
+    temp.configure(text = "Temperature: " + str(tempr))
+    hum.configure(text = "Humidity: "+ str(umid))
+    press.configure(text = "Atm. pressure: "+str(vant))
     
 
 root = Tk()
@@ -26,13 +29,13 @@ entry.pack()
 Space()
 
 
-button = Button(root, text = "Get Predicion", command = output, state = ACTIVE)
+button = Button(root, text = "Get Prediction", command = output, state = ACTIVE)
 button.pack()
 Space()
-temp = Label(root, text = "Temperature: ")
+temp = Label(root, text = "Temperature: ", bg = "black", fg = "white")
 temp.pack()
-hum = Label(root, text = "Humidity: ")
+hum = Label(root, text = "Humidity: ", bg = "black", fg = "white")
 hum.pack()
-press = Label(root, text = "Pressure: ")
+press = Label(root, text = "Pressure: ", bg = "black", fg = "white")
 press.pack()
 root.mainloop()
