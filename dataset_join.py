@@ -5,16 +5,16 @@ hum = open("hum.txt","r")
 wind = open("wspdm.txt","r")
 
 linesT = temp.readlines()
-linesH = hum.readLines()
-linesW = wind.readLines()
+linesH = hum.readlines()
+linesW = wind.readlines()
 
 for i in range(0, len(linesT)):
     dataT = [] 
     dataH = []
     dataW = []
-    dataT = linesT.split(',')
-    dataH = linesH.split(',')
-    dataW = linesW.split(',')
+    dataT = linesT[i].split(',')
+    dataH = linesH[i].split(',')
+    dataW = linesW[i].split(',')
 
     for j in range(0, len(dataT)):
         recT = dataT[j].split('"')
@@ -24,7 +24,7 @@ for i in range(0, len(linesT)):
         valueH = recH[3]
         recW = dataW[j].split('"')
         valueW = recW[3]
-        output.write(key + ";" + valueT + "; " + valueH + "; " + valueW)
+        output.write(key + ";" + valueT + "; " + valueH + "; " + valueW+'\n')
         
     
 
