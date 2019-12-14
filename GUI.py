@@ -1,10 +1,16 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import weather
 
 def Space():
     br = Label(root, text = "", bg = "black")
     br.pack()   
+
+def output():
+    input = entry.get()
+    temp, umid, vant = weather.predict(input)
     
+
 root = Tk()
 root.title("Weather prediction")
 root.geometry("600x600")
@@ -18,7 +24,9 @@ textPredict.pack()
 entry = Entry (root) 
 entry.pack()
 Space()
-button = Button(root, text = "Get Predicion")
+
+
+button = Button(root, text = "Get Predicion", command = output, state = ACTIVE)
 button.pack()
 Space()
 temp = Label(root, text = "U+2614")
