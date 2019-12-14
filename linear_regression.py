@@ -28,9 +28,3 @@ def get_coefs(x,y):
 
 def predict(b0,b1,x):
     return b0 + b1*x
-
-x = [1,2,3]
-y = [2,4,6]
-
-b0, b1 = get_coefs(x,y)
-print(predict(b0,b1,2.5))
