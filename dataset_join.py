@@ -1,21 +1,30 @@
 output = open("dataset","w")
 
-temp = open("tempm.txt",'r')
-hum = open("hum.txt",'r')
-wind = open("wspdm.txt",'r')
+temp = open("tempm.txt","r")
+hum = open("hum.txt","r")
+wind = open("wspdm.txt","r")
 
-lines = temp.readlines()
-for line in lines:
-    data = []
-    data  = line.split(',')
-    #print(data)
-    for record in data:
-        recspt = record.split('"')
-        #print(recspt)
-        key = recspt[1] 
-        value = recspt[3]
-        #print(key, value)
-        #print(key)
-        #key = key[2:-1]
-        #value = value[1:-1] 
-        output.write(key + ";" + value+'\n')
+linesT = temp.readlines()
+linesH = hum.readLines()
+linesW = wind.readLines()
+
+for i in range(0, len(linesT)):
+    dataT = [] 
+    dataH = []
+    dataW = []
+    dataT = linesT.split(',')
+    dataH = linesH.split(',')
+    dataW = linesW.split(',')
+
+    for j in range(0, len(dataT)):
+        recT = dataT[j].split('"')
+        key = recT[1] 
+        valueT = recT[3]
+        recH = dataH[j].split('"')
+        valueH = recH[3]
+        recW = dataW[j].split('"')
+        valueW = recW[3]
+        output.write(key + ";" + valueT + "; " + valueH + "; " + valueW)
+        
+    
+
