@@ -13,6 +13,34 @@ def input():
     input = entryPassword.get()
     f.write(input + "\n")
 
+class User_Data:
+    def __init__(self, pwd, temp, umd, wind,mail):
+        self.pwd = pwd
+        self.temp = temp
+        self.umd = umd
+        self.wind = wind 
+        self.mail = mail
+
+def get_dict():
+    users = {}
+    db = open('userDB','r')
+    lines = db.readlines()
+    for user in lines:
+        data = user.split(';')
+        users[data[0]] = User_Data(data[1],data[2],data[3],data[4],data[5])
+
+    return users
+
+dic = get_dict()
+
+def login():
+    usr = entryUsername.get()
+    pwd = entryPassword.get()
+
+    if dic[usr].pwd == pwd:
+        print('LOGGED')
+    else:
+        print('WRONG')
 
 root = Tk()
 root.title("Log In Page")
@@ -34,6 +62,6 @@ bullet = "\u2022"
 entryPassword.config(show=bullet)
 entryPassword.pack()
 Space()
-buttonLogin = Button(root, text = "LOG IN", command = input, state = ACTIVE)
+buttonLogin = Button(root, text = "LOG IN", command = login, state = ACTIVE)
 buttonLogin.pack()
 root.mainloop()

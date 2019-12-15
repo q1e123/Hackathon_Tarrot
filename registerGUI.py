@@ -7,31 +7,22 @@ class User():
         self.username = username
         self.password = password
 
-def login_btn_clicked(user):
-    with open('userDB', 'a+') as f:
-        reader = f.readline().split(';')
-        my_dict = {k:v for k,v in reader}
-    user1 = user.username
-    password1 = user.password
-    if (my_dict[user1]) == (password1):
-        welcome1 = ("Welcome", user1)
-        
 
-    else:
-        showinfo(title="Error", message="Account already existing")
+def put_data():
+    db = open("userDB",'a+')
+    usr = entryUsername.get()
+    pwd = entryPassword.get()
+    temp = entryTemp.get()
+    umid = entryUmid.get()
+    wind = entryWind.get()
+    mail = entryMail.get()
+
+    db.write(usr+';'+pwd+';'+temp+';'+umid+';'+wind+';'+mail+ '\n')
+
 
 def Space():
     br = Label(root, text = "", bg = "black")
     br.pack()   
-
-def input():
-    f = open('userDB', 'a+')
-    password = entryUsername.get()
-    username = entryPassword.get()
-    user = User(username, password)
-    login_btn_clicked(user)
-    f.write(input + "; ")
-    f.write(input + "\n")
 
 root = Tk()
 root.title("Register Page")
@@ -53,7 +44,29 @@ bullet = "\u2022"
 entryPassword.config(show=bullet)
 entryPassword.pack()
 Space()
-buttonLogin = Button(root, text = "REGISTER", command = input, state = ACTIVE)
+textTemp = Label(root, text = "Enter temperature: ", bg = "black", fg = "white")
+textTemp.pack()
+entryTemp = Entry(root) 
+entryTemp.pack()
+Space()
+textUmid = Label(root, text = "Enter humitidy: ", bg = "black", fg = "white")
+textUmid.pack()
+entryUmid = Entry(root) 
+entryUmid.pack()
+Space()
+textWind = Label(root, text = "Enter wind: ", bg = "black", fg = "white")
+textWind.pack()
+entryWind = Entry(root) 
+entryWind.pack()
+Space()
+textMail = Label(root, text = "Enter mail: ", bg = "black", fg = "white")
+textMail.pack()
+entryMail = Entry(root) 
+entryMail.pack()
+
+
+Space()
+buttonLogin = Button(root, text = "REGISTER", command = put_data, state = ACTIVE)
 buttonLogin.pack()
 
 
