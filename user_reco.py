@@ -48,11 +48,11 @@ def get_face():
                 if(dist < min_dist):
                     min_dist = dist
                     identity = name
-            if min_dist < 0.04: #ASTA
+            if min_dist < 0.1: #ASTA
                 user = get_id(identity[:-1])
                 cv2.putText(frame, user, (x, y - 50), cv2.FONT_HERSHEY_PLAIN, 1.5, (255, 0, 0), 2)
-                #cam.release()
-                #cv2.destroyAllWindows()
+                cam.release()
+                cv2.destroyAllWindows()
                 return user
             else:
                 cv2.putText(frame, 'No matching faces', (x, y - 20), cv2.FONT_HERSHEY_PLAIN, 1.5, (0,255, 0), 2)
