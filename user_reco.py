@@ -37,15 +37,9 @@ def get_face():
             face_database[identity] = utils.img_path_to_encoding(os.path.join('images',name,image), FR_model)
 
     print("Done")
-
-    user_frame = 0
-    last_detected = ""
     cam = cv2.VideoCapture(0)
     
     while True:
-
-        if frame == 10:
-            print('asd')
         ret, frame = cam.read()
         frame = cv2.flip(frame, 1)
 
@@ -65,6 +59,8 @@ def get_face():
             if min_dist < 0.04: #ASTA
                 user = get_id(identity[:-1])
                 cv2.putText(frame, user, (x, y - 50), cv2.FONT_HERSHEY_PLAIN, 1.5, (255, 0, 0), 2)
+                cam.release()
+                cv2.destroyAllWindows()
                 return user
             else:
                 cv2.putText(frame, 'No matching faces', (x, y - 20), cv2.FONT_HERSHEY_PLAIN, 1.5, (0,255, 0), 2)
