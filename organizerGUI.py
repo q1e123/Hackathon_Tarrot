@@ -15,15 +15,21 @@ class User_Data:
         self.mail = mail
 
 def get_dict():
-    users = []
+    dic = {}
     db = open('userDB','r')
     lines = db.readlines()
     for user in lines:
         data = user.split(';')
-        users[data[0]] = User_Data(data[1],data[2],data[3],data[4],data[5])
-    return users
+        dic[data[0]] = User_Data(data[1],data[2],data[3],data[4],data[5])
+    return dic
 
 dic = get_dict()
+def get_key(val): 
+    for key, value in dic.items(): 
+         if val == value: 
+             return key 
+  
+    return "key doesn't exist"
 
 def output():
     input = entry.get()
@@ -33,19 +39,19 @@ def output():
     hum.configure(text = "Humidity: "+ str(umid))
     press.configure(text = "Wind: "+str(vant))
     stringMare = ""
-    for users in dic:
-        temp0,temp1 = users.temp.split('-')
-        hum0, hum1 = users.umd.split('-')
-        wind0, wind1 = users.wind.split('-')
+    for users in dic.values():
+        temp0,temp1 = map(float,users.temp.split('-'))
+        hum0, hum1 = map(float,users.umd.split('-'))
+        wind0, wind1 = map(float,users.wind.split('-'))
         if temp0<=tempr<=temp1 and hum0<=umid<=hum1 and wind0<=vant<=wind1:
-            stringMare+=user+user.mail
-    people.config(text = "People expected to come at event:"+stringMare)
+            stringMare+=get_key(users)+' '+users.mail
+    people.config(text = "People expected to come at event:\n"+stringMare)
 
 root = Tk()
 root.title("Weather prediction")
 root.geometry("600x600")
 root.configure(background="black")
-text = Label(root, text = "Welcome to Tarot for weather, my friend!", bg = "black", fg = "white")
+text = Label(root, text = "Weather predicter", bg = "black", fg = "white")
 text.config(font=("Chiller", 20))
 textPredict = Label(root, text = "Enter your date to be predicted: ", bg = "black", fg = "white", relief = "solid")
 text.pack()
