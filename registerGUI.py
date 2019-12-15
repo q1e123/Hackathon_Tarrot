@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter.messagebox import showinfo
 import hashlib
 
 class User():
@@ -8,18 +7,30 @@ class User():
         self.username = username
         self.password = password
 
+def get_users():
+    users = []
+    db = open('userDB','r')
+    lines = db.readlines()
+    for user in lines:
+        data = user.split(';')
+        users.append(data[0])
+
+    return users
+
+userList = get_users()
 
 def put_data():
     db = open("userDB",'a+')
     usr = entryUsername.get()
+    if usr in userList:
+        textUsername.config(fg = "red")
+        return
     pwd = hashlib.sha256(entryPassword.get().encode('utf-8')).hexdigest()
     temp = entryTemp.get()
     umid = entryUmid.get()
     wind = entryWind.get()
     mail = entryMail.get()
-
     db.write(usr+';'+pwd+';'+temp+';'+umid+';'+wind+';'+mail+ '\n')
-
 
 def Space():
     br = Label(root, text = "", bg = "black")
