@@ -90,32 +90,41 @@ def facial_recon_login(button):
     else:
         button[0].config(background='#ff8585')
 
-root = Tk()
-root.title("Log In Page")
-root.geometry("600x600")
-root.configure(background="black")
-text = Label(root, text = " User Login", bg = "black", fg = "white")
-text.config(font=("Chiller", 20))
-text.pack()
-Space()
-textUsername = Label(root, text = "Enter username: ", bg = "black", fg = "white")
-textUsername.pack()
-entryUsername = Entry (root) 
-entryUsername.pack()
-Space()
-textPassword = Label(root, text = "Enter password: ", bg = "black", fg = "white")
-textPassword.pack()
-entryPassword = Entry (root) 
-bullet = "\u2022"
-entryPassword.config(show=bullet)
-entryPassword.pack()
-Space()
-buttonLogin = Button(root, text = "LOG IN", command = login, state = ACTIVE)
-buttonLogin.pack()
+def get_login_win():
+    global root 
+    root = Tk()
+    root.title("Log In Page")
+    root.geometry("600x600")
+    root.configure(background="black")
+    global text
+    text = Label(root, text = " User Login", bg = "black", fg = "white")
+    text.config(font=("Chiller", 20))
+    text.pack()
+    Space()
+    global textUsername 
+    textUsername = Label(root, text = "Enter username: ", bg = "black", fg = "white")
+    textUsername.pack()
+    global entryUsername
+    entryUsername = Entry (root) 
+    entryUsername.pack()
+    Space()
+    global textPassword
+    textPassword = Label(root, text = "Enter password: ", bg = "black", fg = "white")
+    textPassword.pack()
+    global entryPassword
+    entryPassword = Entry (root) 
+    bullet = "\u2022"
+    entryPassword.config(show=bullet)
+    entryPassword.pack()
+    Space()
+    global buttonLogin
+    buttonLogin = Button(root, text = "LOG IN", command = login, state = ACTIVE)
+    buttonLogin.pack()
 
-Space()
-fac = []
-facial = Button(root, text = "Facial log in", command = lambda: facial_recon_login(fac), state = ACTIVE)
-facial.pack()
-fac.append(facial)
-root.mainloop()
+    Space()
+    fac = []
+    global facial
+    facial = Button(root, text = "Facial log in", command = lambda: facial_recon_login(fac), state = ACTIVE)
+    facial.pack()
+    fac.append(facial)
+    root.mainloop()

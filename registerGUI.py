@@ -1,5 +1,7 @@
 from tkinter import *
 import hashlib
+import subprocess
+import loginGUI
 
 class User():
 
@@ -31,55 +33,70 @@ def put_data():
     wind = entryWind.get()
     mail = entryMail.get()
     db.write(usr+';'+pwd+';'+temp+';'+umid+';'+wind+';'+mail+ '\n')
+    Tk.quit()
+    loginGUI.get_login_win()
 
 def Space():
     br = Label(root, text = "", bg = "black")
-    br.pack()   
+    br.pack()
 
-root = Tk()
-root.title("Register Page")
-root.geometry("600x600")
-root.configure(background="black")
-text = Label(root, text = " Create an account", bg = "black", fg = "white")
-text.config(font=("Chiller", 20))
-text.pack()
-Space()
-textUsername = Label(root, text = "Enter username: ", bg = "black", fg = "white")
-textUsername.pack()
-entryUsername = Entry (root) 
-entryUsername.pack()
-Space()
-textPassword = Label(root, text = "Enter password: ", bg = "black", fg = "white")
-textPassword.pack()
-entryPassword = Entry(root) 
-bullet = "\u2022"
-entryPassword.config(show=bullet)
-entryPassword.pack()
-Space()
-textTemp = Label(root, text = "Enter temperature: ", bg = "black", fg = "white")
-textTemp.pack()
-entryTemp = Entry(root) 
-entryTemp.pack()
-Space()
-textUmid = Label(root, text = "Enter humitidy: ", bg = "black", fg = "white")
-textUmid.pack()
-entryUmid = Entry(root) 
-entryUmid.pack()
-Space()
-textWind = Label(root, text = "Enter wind: ", bg = "black", fg = "white")
-textWind.pack()
-entryWind = Entry(root) 
-entryWind.pack()
-Space()
-textMail = Label(root, text = "Enter mail: ", bg = "black", fg = "white")
-textMail.pack()
-entryMail = Entry(root) 
-entryMail.pack()
-
-
-Space()
-buttonLogin = Button(root, text = "REGISTER", command = put_data, state = ACTIVE)
-buttonLogin.pack()
-
-
-root.mainloop()
+def get_register_win():
+    global root
+    root = Tk()
+    root.title("Register Page")
+    root.geometry("600x600")
+    root.configure(background="black")
+    global text
+    text = Label(root, text = " Create an account", bg = "black", fg = "white")
+    text.config(font=("Chiller", 20))
+    text.pack()
+    Space()
+    global textUsername
+    textUsername = Label(root, text = "Enter username: ", bg = "black", fg = "white")
+    textUsername.pack()
+    global entryUsername
+    entryUsername = Entry (root) 
+    entryUsername.pack()
+    Space()
+    global textPassword
+    textPassword = Label(root, text = "Enter password: ", bg = "black", fg = "white")
+    textPassword.pack()
+    global entryPassword
+    entryPassword = Entry(root) 
+    bullet = "\u2022"
+    entryPassword.config(show=bullet)
+    entryPassword.pack()
+    Space()
+    global textTemp
+    textTemp = Label(root, text = "Enter temperature: ", bg = "black", fg = "white")
+    textTemp.pack()
+    global entryTemp
+    entryTemp = Entry(root) 
+    entryTemp.pack()
+    Space()
+    global textUmid
+    textUmid = Label(root, text = "Enter humitidy: ", bg = "black", fg = "white")
+    textUmid.pack()
+    global entryUmid
+    entryUmid = Entry(root) 
+    entryUmid.pack()
+    Space()
+    global textWind
+    textWind = Label(root, text = "Enter wind: ", bg = "black", fg = "white")
+    textWind.pack()
+    global entryWind
+    entryWind = Entry(root) 
+    entryWind.pack()
+    Space()
+    global textMail
+    textMail = Label(root, text = "Enter mail: ", bg = "black", fg = "white")
+    textMail.pack()
+    global entryMail
+    entryMail = Entry(root) 
+    entryMail.pack()
+    
+    Space()
+    global buttonLogin
+    buttonLogin = Button(root, text = "REGISTER", command = put_data, state = ACTIVE)
+    buttonLogin.pack()
+    root.mainloop()

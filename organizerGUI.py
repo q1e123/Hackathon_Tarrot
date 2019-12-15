@@ -23,7 +23,6 @@ def get_dict():
         dic[data[0]] = User_Data(data[1],data[2],data[3],data[4],data[5])
     return dic
 
-dic = get_dict()
 def get_key(val): 
     for key, value in dic.items(): 
          if val == value: 
@@ -33,6 +32,7 @@ def get_key(val):
 
 def output():
     input = entry.get()
+    dic = get_dict()
     tempr, umid, vant = weather.predict(input)
     db = open('outputDB','a+')        
     temp.configure(text = "Temperature: " + str(tempr))
@@ -47,28 +47,38 @@ def output():
             stringMare+=get_key(users)+' '+users.mail
     people.config(text = "People expected to come at event:\n"+stringMare)
 
-root = Tk()
-root.title("Weather prediction")
-root.geometry("600x600")
-root.configure(background="black")
-text = Label(root, text = "Weather predicter", bg = "black", fg = "white")
-text.config(font=("Chiller", 20))
-textPredict = Label(root, text = "Enter your date to be predicted: ", bg = "black", fg = "white", relief = "solid")
-text.pack()
-Space()
-textPredict.pack()
-entry = Entry (root) 
-entry.pack()
-Space()
-button = Button(root, text = "Get Prediction", command = output, state = ACTIVE)
-button.pack()
-Space()
-temp = Label(root, text = "Temperature: ", bg = "black", fg = "white")
-temp.pack()
-hum = Label(root, text = "Humidity: ", bg = "black", fg = "white")
-hum.pack()
-press = Label(root, text = "Pressure: ", bg = "black", fg = "white")
-press.pack()
-people = Label(root, text = "People expected to come at event:", bg = "black", fg = "white")
-people.pack()
-root.mainloop()
+def get_org_win():
+    global root
+    root = Tk()
+    root.title("Weather prediction")
+    root.geometry("600x600")
+    root.configure(background="black")
+    global text
+    text = Label(root, text = "Weather predicter", bg = "black", fg = "white")
+    text.config(font=("Chiller", 20))
+    global textPredict
+    textPredict = Label(root, text = "Enter your date to be predicted: ", bg = "black", fg = "white", relief = "solid")
+    text.pack()
+    Space()
+    textPredict.pack()
+    global entry
+    entry = Entry (root) 
+    entry.pack()
+    Space()
+    global button
+    button = Button(root, text = "Get Prediction", command = output, state = ACTIVE)
+    button.pack()
+    Space()
+    global temp
+    temp = Label(root, text = "Temperature: ", bg = "black", fg = "white")
+    temp.pack()
+    global hum
+    hum = Label(root, text = "Humidity: ", bg = "black", fg = "white")
+    hum.pack()
+    global press
+    press = Label(root, text = "Pressure: ", bg = "black", fg = "white")
+    press.pack()
+    global people
+    people = Label(root, text = "People expected to come at event:", bg = "black", fg = "white")
+    people.pack()
+    root.mainloop()
