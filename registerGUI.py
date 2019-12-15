@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter.messagebox import showinfo
+import hashlib
 
 class User():
 
@@ -11,7 +12,7 @@ class User():
 def put_data():
     db = open("userDB",'a+')
     usr = entryUsername.get()
-    pwd = entryPassword.get()
+    pwd = hashlib.sha256(entryPassword.get().encode('utf-8')).hexdigest()
     temp = entryTemp.get()
     umid = entryUmid.get()
     wind = entryWind.get()

@@ -1,17 +1,10 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
+import hashlib
 
 def Space():
     br = Label(root, text = "", bg = "black")
     br.pack()   
-
-def input():
-    f = open("userDB", "w")
-    input = entryUsername.get()
-    f.write(input + "; ")
-    input = entryPassword.get()
-    f.write(input + "\n")
 
 class User_Data:
     def __init__(self, pwd, temp, umd, wind,mail):
@@ -35,7 +28,7 @@ dic = get_dict()
 
 def login():
     usr = entryUsername.get()
-    pwd = entryPassword.get()
+    pwd = hashlib.sha256(entryPassword.get().encode('utf-8')).hexdigest()
 
     if dic[usr].pwd == pwd:
         print('LOGGED')
