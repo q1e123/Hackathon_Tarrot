@@ -23,12 +23,12 @@ def get_dict():
         dic[data[0]] = User_Data(data[1],data[2],data[3],data[4],data[5])
     return dic
 
-def get_key(val): 
+def get_key(val,dic): 
     for key, value in dic.items(): 
          if val == value: 
              return key 
   
-    return "key doesn't exist"
+    return "-"
 
 def output():
     input = entry.get()
@@ -44,7 +44,7 @@ def output():
         hum0, hum1 = map(float,users.umd.split('-'))
         wind0, wind1 = map(float,users.wind.split('-'))
         if temp0<=tempr<=temp1 and hum0<=umid<=hum1 and wind0<=vant<=wind1:
-            stringMare+=get_key(users)+' '+users.mail
+            stringMare+=get_key(users,dic)+' '+users.mail
     people.config(text = "People expected to come at event:\n"+stringMare)
 
 def get_org_win():
@@ -82,3 +82,4 @@ def get_org_win():
     people = Label(root, text = "People expected to come at event:", bg = "black", fg = "white")
     people.pack()
     root.mainloop()
+

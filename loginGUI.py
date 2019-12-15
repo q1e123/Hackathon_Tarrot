@@ -27,7 +27,7 @@ def get_dict():
     db.close()
     return users
 
-dic = get_dict()
+
 
 def login():
     usr = entryUsername.get()
@@ -43,6 +43,7 @@ def utos(usr):
     return usr+';'+dic[usr].pwd+';'+dic[usr].temp+';'+dic[usr].umd+';'+dic[usr].wind+';'+dic[usr].mail
 
 def update(usr,widgets):
+    
     old = utos(usr)
     new = usr+';'+dic[usr].pwd+';'+widgets[0].get()+';'+widgets[1].get()+';'+widgets[2].get()+';'+dic[usr].mail
     
@@ -85,13 +86,15 @@ def user_screen(usr):
 
 def facial_recon_login(button):
     possible = user_reco.get_face()
+
+    print(possible)
     if possible in dic:
         user_screen(possible)
-    else:
-        button[0].config(background='#ff8585')
 
 def get_login_win():
     global root 
+    global dic
+    dic = get_dict()
     root = Tk()
     root.title("Log In Page")
     root.geometry("600x600")
