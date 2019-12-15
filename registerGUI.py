@@ -1,13 +1,7 @@
 from tkinter import *
 import hashlib
-import subprocess
 import loginGUI
-
-class User():
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+from validate_email import validate_email
 
 def get_users():
     users = []
@@ -26,14 +20,45 @@ def put_data():
     usr = entryUsername.get()
     if usr in userList:
         textUsername.config(fg = "red")
+        db.close()
         return
     pwd = hashlib.sha256(entryPassword.get().encode('utf-8')).hexdigest()
     temp = entryTemp.get()
+    try:
+        _,_ = map(float,temp.split('-'))
+
+    except:
+        textTemp.config(fg = "red")
+        db.close()
+        return
+
     umid = entryUmid.get()
+    try:
+        _,_ = map(float,umid.split('-'))
+
+    except:
+        textUmid.config(fg = "red")
+        db.close()
+        return
+    
     wind = entryWind.get()
+    try:
+        _,_ = map(float,wind.split('-'))
+
+    except:
+        textWind.config(fg = "red")
+        db.close()
+        return
+    
     mail = entryMail.get()
+    is_valid = validate_email(mail,verify=True)
+    if is_valid is False:
+        textMail.config(fg = "red")
+        db.close()
+        return
     db.write(usr+';'+pwd+';'+temp+';'+umid+';'+wind+';'+mail+ '\n')
-    Tk.quit()
+    db.close()
+    root.destroy()
     loginGUI.get_login_win()
 
 def Space():

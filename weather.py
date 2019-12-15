@@ -19,7 +19,7 @@ def get_year():
     ds = open("dataset","r")
     fl = ds.readline()
     ds.close()
-    return fl[3]
+    return fl[:4]
     
 # f(x) = y , x = data y = {temp, umid, vant}
 def predict(input):
@@ -47,7 +47,7 @@ def predict(input):
     _x = x.copy()
 
     date = input
-    date = date [:3] + year + date[4:]
+    date = year + date[4:]
     date = get_x(date)
 
     b0, b1_temp = lr.get_coefs(x,y0)

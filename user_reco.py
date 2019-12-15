@@ -10,14 +10,6 @@ import tensorflow as tf
 from utils import *
 from inception_blocks_v2 import *
 
-class Point:
-    def __init__(self, x=0,y=0):
-        self.x = x
-        self.y = y
-    
-    def get_coords(self):
-        return (x,y)
-
 def get_id(string):
     return ''.join([i for i in string if not i.isdigit()])
 def get_face():
@@ -59,8 +51,8 @@ def get_face():
             if min_dist < 0.04: #ASTA
                 user = get_id(identity[:-1])
                 cv2.putText(frame, user, (x, y - 50), cv2.FONT_HERSHEY_PLAIN, 1.5, (255, 0, 0), 2)
-                cam.release()
-                cv2.destroyAllWindows()
+                #cam.release()
+                #cv2.destroyAllWindows()
                 return user
             else:
                 cv2.putText(frame, 'No matching faces', (x, y - 20), cv2.FONT_HERSHEY_PLAIN, 1.5, (0,255, 0), 2)

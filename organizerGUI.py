@@ -43,6 +43,8 @@ def output():
         temp0,temp1 = map(float,users.temp.split('-'))
         hum0, hum1 = map(float,users.umd.split('-'))
         wind0, wind1 = map(float,users.wind.split('-'))
+        if '\n' not in users.mail:
+            users.mail+='\n'
         if temp0<=tempr<=temp1 and hum0<=umid<=hum1 and wind0<=vant<=wind1:
             stringMare+=get_key(users,dic)+' '+users.mail
     people.config(text = "People expected to come at event:\n"+stringMare)
